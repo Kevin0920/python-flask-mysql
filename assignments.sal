@@ -1,0 +1,17 @@
+SELECT countries.name, count(cities.name) AS cities
+FROM countries
+left JOIN cities
+ON contries.code = cities.country_code
+group by countries.name
+
+
+SELECT countries.name, count(cities.name)
+FROM countries
+left JOIN cities
+ON contries.code = cities.country_code
+group by countries.name
+
+
+SELECT clients.first_name, clients.last_name, sites.domain_name
+FROM clients LEFT 
+JOIN sites ON clients.id = sites.clients_id

@@ -1,0 +1,74 @@
+<html>
+<head>
+  <title>Friends</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <style type="text/css">
+    table td {
+      padding: 5px
+    }
+  </style>
+</head>
+<body style="padding: 10px">
+<!-- we can use the line below to see all of our data in our template -->
+<!-- {{ all_friends }} -->
+<!-- {{one_friend}} -->
+<h1>These are all my friends!</h1><br>
+<!-- with all the data we can then construct a more structured output -->
+<table width="100%" >
+<tr style="background: #999; color: #fff; line-height: 2em">
+  <td>ID</td>
+  <td>Name</td>
+  <td>Age</td>
+  <td>Friend since</td>
+  <td></td>
+  <td></td>
+</tr>
+{% for friend in all_friends: %}
+<tr>
+   <td><p>{{ friend['id'] }}</p></td>
+   <td><p>{{ friend['name'] }}</p></td>
+   <td><p>{{ friend['age'] }}</p></td>
+   <td><p>{{ friend['since'] }}</p></td>
+   <td><p>
+          <a href="/remove_friend/{{ friend['id'] }}">Delete</a>
+   </p></td>
+  <td><p><a href="javascript:void(0)" class="butupdate{{ friend['id'] }}">Update</a></p></td>
+</tr><tr>
+<td colspan="6">
+    <form action='/update_friend/{{ friend['id'] }}' method='POST' class="update{{ friend['id'] }}">
+        <label >Name:<input type="text" name="name" "></label>
+        <label >Age:<input type="text" name="age" ></label>
+        <label >Friends since:<input type="text" name="since" ></label>
+        <input type="submit" value="Update">
+      </form>
+      <script>
+      $( ".update{{ friend['id'] }}" ).hide();
+    $( ".butupdate{{ friend['id'] }}" ).click(function() {
+      $( ".update{{ friend['id'] }}" ).toggle();
+    });
+    </script>
+       <hr>
+</td>
+</tr>
+{% endfor %}
+</table>
+<!-- Separate friend display -->
+{% if one_friend: %}
+   <p>ID: {{ one_friend['id'] }}</p>
+   <p>Name: {{ one_friend['name'] }}</p>
+   <p>Age: {{ one_friend['age'] }}</p>
+   <p>Friends since: {{ one_friend['since'] }}</p>
+   <hr>
+{% endif %}
+
+  <h2>Add a Friend</h2>
+  <form action='/friends' method='POST' class="form-inline">
+    <label >Name:<input type="text" name="name" ></label>
+    <label >Age:<input type="text" name="age" ></label>
+    <label >Friends since:<input type="text" name="since" ></label>
+    <input type="submit" value="Add">
+  </form>
+
+</body>
+</html>

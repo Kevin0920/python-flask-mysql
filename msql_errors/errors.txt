@@ -1,0 +1,48 @@
+127.0.0.1 - - [14/Jun/2017 18:21:44] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/chosenman/OneDrive/CODING_DOJO/CODE/Python/flask_mysql/msql_errors/server.py", line 11, in index
+    friends = mysql.query_db(query)                           # run query with query_db()
+  File "/Users/chosenman/OneDrive/CODING_DOJO/CODE/Python/flask_mysql/msql_errors/mysqlconnection.py", line 22, in query_db
+    result = self.db.session.execute(text(query), data)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py", line 157, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/util/_collections.py", line 990, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "/usr/local/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 771, in create_session
+    return SignallingSession(self, **options)
+  File "/usr/local/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 155, in __init__
+    bind = options.pop('bind', None) or db.engine
+  File "/usr/local/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 893, in engine
+    return self.get_engine(self.get_app())
+  File "/usr/local/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 910, in get_engine
+    return connector.get_engine()
+  File "/usr/local/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py", line 539, in get_engine
+    info = make_url(uri)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/url.py", line 194, in make_url
+    return _parse_rfc1738_args(name_or_url)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/url.py", line 240, in _parse_rfc1738_args
+    return URL(name, **components)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/url.py", line 60, in __init__
+    self.port = int(port)
+ValueError: invalid literal for int() with base 10: '8d889'
+127.0.0.1 - - [14/Jun/2017 18:21:44] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jun/2017 18:21:44] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jun/2017 18:21:44] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jun/2017 18:21:45] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [14/Jun/2017 18:21:45] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -

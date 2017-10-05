@@ -1,0 +1,109 @@
+<html>
+<head>
+  <title>Emails</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <style type="text/css">
+    table td { 
+      padding: 5px
+    }
+  .error {
+    color:red;
+  }
+  .success {
+    color:green;
+  }
+  </style>
+</head>
+<body style="padding: 10px">
+
+<!-- FLASH messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="{{category}}">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<!-- end FLASH messages -->
+
+<h1>These are all my emails!</h1><br>
+<table width="100%" >
+    <tr style="background: #999; color: #fff; line-height: 2em">
+      <td>ID</td>
+      <td>email</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    {% for email in all_emails: %}
+    <tr>
+      <!-- email -->
+      <td>
+        <p>{{ email['id'] }}</p>
+      </td>
+      <!-- show -->
+      <td>
+        <p>
+          <a href="/emails/{{ email['id'] }}">{{ email['email'] }}</a>
+        </p>
+      </td>
+      <!-- delete -->
+      <td>
+        <p>
+          <a href="/remove_email/{{ email['id'] }}">Delete</a>
+        </p>
+      </td>
+      <!-- update -->
+      <td>
+        <p>
+          <a href="javascript:void(0)" class="butupdate{{ email['id'] }}">Update</a>
+        </p>
+      </td>
+    </tr>
+    <!-- update form -->
+    <tr>
+      <td colspan="6">
+        <form action='/update_email/{{ email['id'] }}' method='POST' class="update{{ email['id'] }}">
+
+            <label >Email:<input type="email" name="email" "></label>
+            <input type="submit" value="Update">
+
+          </form>
+          <script>
+              $( ".update{{ email['id'] }}" ).hide();
+              $( ".butupdate{{ email['id'] }}" ).click(function() {
+                  $( ".update{{ email['id'] }}" ).toggle();
+              });
+          </script>
+      </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+<!-- Separate friend display -->
+{% if one_email: %}
+  <table width="100%" >
+      <tr>
+        <td> <p>{{ one_email['id'] }}</p></td>
+        <td><p>{{ one_email['email'] }}</p></td>
+        <td></td>
+        <td></td>
+      </tr>
+  </table>
+  <a href="/">BACK</a>
+{% endif %}
+<!-- Separate friend display -->
+
+
+  <h2>Add email</h2>
+  <form action='/email' method='POST' class="form-inline">
+      <label >email:<input type="text" name="email" ></label>
+
+      <input type="submit" value="Add">
+  </form>
+
+</body>
+</html>

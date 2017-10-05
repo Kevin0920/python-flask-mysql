@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Login and Registration</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <style type="text/css">
+    table td { 
+      padding: 5px
+    }
+  .error {
+    color:red;
+  }
+  .success {
+    color:green;
+  }
+  </style>
+</head>
+<body style="padding: 10px">
+
+<!-- FLASH messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="{{category}}">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<!-- end FLASH messages -->
+
+
+
+
+  <h2>Registration:</h2>
+  <form action='/register' method='POST' class="form-inline">
+
+      <label >First Name:<input type="text" name="fname" ></label><br>
+      <label >Last Name:<input type="text" name="lname" ></label><br>
+      <label >email:<input type="text" name="email" ></label><br>
+      <label >Password:<input type="password" name="password" ></label><br>
+      <label >Retype Password:<input type="password" name="repassword" ></label><br>
+
+      <input type="submit" value="Register">
+  </form>
+
+  <h2>Login:</h2>
+  <form action='/login' method='POST' class="form-inline">
+
+      <label >email:<input type="text" name="email" ></label><br>
+      <label >Password:<input type="password" name="password" ></label><br>
+
+      <input type="submit" value="Login">
+  </form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+Use db_name
+
+SELECT concat("Mr. " , first_name, " " , last_name) AS "full name" FROM users
+SELECT concat_WS(" ", first_name, last_name) AS "full name" FROM users
+SELECT LENGTH(last_name) FROM users
+SELECT LOWER(first_name) FROM users 
+
+SELECT HOUR(created_at), created_at FROM users
+SELECT SECOND(created_at), created_at FROM users
+SELECT dayname(created_at), created_at FROM users
+SELECT MONTH(created_at), created_at FROM users
+SELECT NOW()
+
+
+
+SELECT DATE_FORMAT(created_at, "%W %M %e") FROM users
+
+
+SELECT clients.first_name, clients.last_name, billing.amount, billing.charged_datetime
+FROM clients
+JOIN billing ON clients.id = billing.clients_id
+
+
+SELECT sites.domain_name, leads.first_name, leads.last_name
+FROM sites
+JOIN leads ON sites.id = leads.sites_id
+
+
+SELECT clients.first_name, clients.last_name, sites.domain_name, leads.first_name
+FROM clients
+JOIN sites ON clients.id = sites.clients_id
+JOIN leads ON sites.id = leads.sites_id
